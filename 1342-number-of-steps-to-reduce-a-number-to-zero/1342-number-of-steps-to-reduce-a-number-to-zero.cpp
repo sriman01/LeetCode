@@ -6,7 +6,7 @@ public:
         {
             count++;
              if(num&1) num-=1;
-             else num/=2;
+             else num>>=1;;
             
         }
         
