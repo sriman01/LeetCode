@@ -19,7 +19,7 @@ class Solution {
          if(grid[i][j] != '1') 
           return; 
         
-        grid[i][j]=2;
+        grid[i][j]=0;
         
        dfs(i-1,j,grid);
        dfs(i+1,j,grid);
