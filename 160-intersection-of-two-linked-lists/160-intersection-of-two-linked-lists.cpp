@@ -30,20 +30,20 @@ public:
         }
                                         
        
-        while(count1>count2) {
-            count1--;
-            a=a->next;
+        while(count1 > count2) {
+            count1 --;
+            a = a->next;
         }
         
 		
-        while(count2>count1) {
+        while(count2 > count1) {
             count2--;
-            b=b->next;
+            b = b->next;
         }
         
-        while(a!=b) {
-            a=a->next;
-            b=b->next;
+        while(a != b) {
+            a = a->next;
+            b = b->next;
         }
         
         return a;
