@@ -2,15 +2,14 @@ class Solution {
 public:
     int removePalindromeSub(string s) {
         
-         if(s.size() == 0) 
-                return 0;
-        string str = s; 
+        if(s == "") return 0;
         
-        reverse(str.begin(), str.end());
+        string s2 = s;
         
-        if(s==str) return 1;
+        reverse(s2.begin(), s2.end());
+        
+        if(s == s2) return 1;
         
         return 2;
-        
     }
 };
