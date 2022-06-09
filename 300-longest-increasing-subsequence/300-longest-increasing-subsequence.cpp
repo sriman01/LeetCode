@@ -1,29 +1,35 @@
 class Solution {
 public:
-    
-    int func(int i, vector<int> &nums, vector<int>& dp){
-        int ans = 1;
-        
-        if(dp[i] != -1)
-            return dp[i];
-        
-        for(int j = 0; j < i; j++){
-            if(nums[i] > nums[j])
-               ans = max(ans, func(j, nums, dp)+1);
-        }
-        
-        return dp[i] = ans;
-    }
     int lengthOfLIS(vector<int>& nums) {
         
-        int ans = 0;
+        int n = nums.size();
         
-        int n =nums.size();
+        int i,j;
+        int mixi = 0;
         
-        vector< int > dp(n, -1);
+        vector<int>dp(nums.size(), 1);
+    
+        for(int i = 1;i<n;i++)
+        {
+            for(int j=0;j<i;j++)
+            {
+                if(nums[i]>nums[j] && dp[i]<dp[j]+1)
+                {
+                    dp[i] = dp[j] + 1;
+                }
+            }
+        }
         
-        for(int i = 0; i < n; i++)     
-            ans = max(ans, func(i, nums, dp));
-        return ans;
+        for(auto x : dp)
+        {
+            if(x > mixi)
+            {
+                mixi = x;
+            }
+                
+        }
+        
+        return mixi;
+        
     }
 };
