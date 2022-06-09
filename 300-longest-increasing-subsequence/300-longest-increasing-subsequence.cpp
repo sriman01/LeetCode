@@ -1,7 +1,7 @@
 class Solution {
 public:
     
-    int func(int i, vector<int>& nums, vector<int>& dp){
+    int func(int i, vector<int> &nums, vector<int>& dp){
         int ans = 1;
         
         if(dp[i] != -1)
