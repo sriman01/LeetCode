@@ -7,10 +7,18 @@ public:
         
         while(i > j)
         {
-            if(numbers[i] + numbers[j] < target)
-                j++;
-            if(numbers[i] + numbers[j] > target)
+            if(numbers[i] + numbers[j] < target){
+                       j++;
+                  continue;
+                
+            }
+         
+            if(numbers[i] + numbers[j] > target){
                 i--;
+                continue;
+                
+            }
+               
             if(numbers[i]+numbers[j] == target)
             {
                 v.push_back(min(i,j)+1);
