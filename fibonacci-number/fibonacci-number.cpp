@@ -1,23 +1,18 @@
 class Solution {
 public:
-    int fibb(int n, vector<int> &dp)
-    {
-        if(n == 0) 
-             return 0;
-        if(n == 1) 
-            return 1;
-        
-        if(dp[n] != -1) 
-             return dp[n];
-        
-        return dp[n] = fibb(n - 1, dp) + fibb(n - 2, dp);
-    }
+       unordered_map<int, int> Map;
+       int x;
     
     int fib(int n) {
         
-        vector<int> dp(n+1,-1);
+        if(n == 0 || n == 1)
+            return n;
         
-        return fibb(n,dp);
+        if(Map.find(n) != Map.end()) return Map[n];
         
+         x = fib(n - 1) + fib(n - 2);
+         Map.insert(make_pair(n, x));
+        
+        return x;
     }
 };
