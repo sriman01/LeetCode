@@ -1,29 +1,29 @@
 class Solution {
 public:
     
-    int LIS(int n, int m,int size, vector<int>& nums, vector<vector<int>>& dp) {
-        if(n == size)
-            return 0;
+    int LIS(int i, vector<int>& nums, vector<int>& dp) {
+        int ans = 1;
         
-        if(dp[n][m + 1] != -1) return dp[n][m + 1];
+        if(dp[i] != -1) return dp[i];
         
-       int length = LIS(n+1, m, size, nums, dp);
+        for(int j = 0; j < i; j++) {
+            if(nums[i] > nums[j])
+                ans = max(ans, LIS(j, nums, dp) + 1);
+        }
         
-        if(m == -1 || nums[ m ] < nums[ n ]) 
-            length = max(length, 1 + LIS(n+1, n, size, nums, dp));
-            
-        
-        return dp[ n ][m + 1] = length;
-        
-             
-        
+        return dp[i] = ans;
     }
+
     int lengthOfLIS(vector<int>& nums) {
         
-        int size = nums.size();
+        int n = nums.size(), ans = 0;
         
-        vector<vector< int >> dp(size, vector<int>(size+1, -1));
+        vector< int >dp(n, -1);
         
-          return LIS(0, -1, size, nums, dp);
+        for(int i = 0; i < n; i ++) {
+            
+            ans = max(ans, LIS(i, nums, dp));
+        }
+        return ans;
     }
 };
