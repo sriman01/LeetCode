@@ -3,20 +3,20 @@ public:
     string longestPalindrome(string s) {
          int n= s.size(), length = 0, start = 0;
         
-        vector<vector<int>> dp(n, vector<int> (n, 0));
+        vector<vector<bool>> dp(n, vector<bool> (n, false));
         
         for(int i = 0; i < n ; i ++) {
-            dp[i][i] = 1;
+            dp[i][i] = true;
             
             if(i < n - 1 && s[i] == s[i + 1])
-                dp[i][i+1] = 1;
+                dp[i][i+1] = true;
         }
         
-        for(int i = n- 3; i >= 0; i --) {
+        for(int i = n - 2; i >= 0 ; i --) {
             for(int j = i + 2; j < n; j ++) {
                 if( s[i] == s[j] && dp[i + 1][j - 1])
                     
-                    dp[i][j] = 1;
+                    dp[i][j] = true;
             }
         }
         
