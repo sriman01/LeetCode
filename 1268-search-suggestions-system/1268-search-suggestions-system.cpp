@@ -1,26 +1,29 @@
 class Solution {
 public:
     vector<vector<string>> suggestedProducts(vector<string>& products, string searchWord) {
+
+        sort(products.begin(), products.end());
         
-        multiset<string> mul_Set;
-        vector<string> temp;
-        vector<vector<string>> res;
+        unordered_map<string, vector<string>> ump;
         
-        string current = "";
-        
-        for(auto letter : searchWord) {
-            current += letter;
-            mul_Set.clear();
-            for(auto S :  products) {
-                if(S.substr(0,current.size()) == current)
-                    mul_Set.insert(S);
-            }
-                temp.clear();
-                for(int i = 0; i < 3 && !mul_Set.empty(); i++) {
-                    temp.push_back(*mul_Set.begin());
-                    mul_Set.erase(mul_Set.begin());
+        for(auto product : products) {
+            string sub = "";
+            
+            for(auto it : product) {
+                sub += it;
+                
+                if(ump[sub].size() < 3) {
+                    ump[sub].push_back(product);
                 }
-                res.push_back(temp);
+            }
+        }
+    
+        vector<vector<string>> res;
+        string s = "";
+        for(auto it : searchWord) {
+             s += it;
+            
+            res.push_back(ump[s]);
         }
         return res;
     }
