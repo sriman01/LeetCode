@@ -5,14 +5,14 @@ public:
         sort(products.begin(), products.end());
         
         unordered_map<string, vector<string>> ump;
-        
-        for(auto product : products) {
-            string sub = "";
+        string sub = "";
+        for(auto it : searchWord) {
             
-            for(auto it : product) {
-                sub += it;
-                
-                if(ump[sub].size() < 3) {
+              sub += it;
+            
+            for(auto product : products) {
+              
+                if(sub == product.substr(0, sub.size()) && ump[sub].size() < 3) {
                     ump[sub].push_back(product);
                 }
             }
