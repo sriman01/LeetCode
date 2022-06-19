@@ -4,9 +4,8 @@ public:
         if(n <= 0)
             return false;
         
-        if(__builtin_popcount(n) == 1)
-            return true;
-        return false;
+        return (ceil(log2(n)) == floor(log2(n)));
+           
         
     }
 };
