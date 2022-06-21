@@ -1,7 +1,7 @@
 class Solution {
 public:
     int minSetSize(vector<int>& arr) {
-        map<int, int> freq;
+        unordered_map<int, int> freq;
         
         int n = arr.size();
         
