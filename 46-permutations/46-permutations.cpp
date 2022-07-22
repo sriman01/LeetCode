@@ -1,29 +1,31 @@
 class Solution {
-    void swap(int i, int j, vector<int> &nums) {
-        int t = nums[i];
-        nums[i] = nums[j];
-        nums[j] = t;
-    }
 public:
     vector<vector<int>> res;
     
-    void Permutation(int idx, vector<int> &nums, int n) {
-        if(idx == n){
-            res.push_back(nums);
+    void Permutation(vector<int> &nums,vector<int> & temp, vector<bool> &picked, int n) {
+        if(temp.size() == n){
+            res.push_back(temp);
             
             return;
         }
         
-        for(int i = idx; i < n; i++){
-            swap(i, idx, nums);
-            Permutation(idx + 1, nums, n);
-            swap(i, idx, nums);
+        for(int i = 0; i < n; i++) {
+            if(!picked[i]){
+                picked[i] = true;           
+                temp.push_back(nums[i]);                   // pick
+                Permutation(nums, temp, picked, n);
+                temp.pop_back();                           // not pick
+                picked[i] = false;
+            }
         }
     }
+    
+    
     vector<vector<int>> permute(vector<int>& nums) {
-        
-        Permutation(0, nums, nums.size());
-        
+        int n = nums.size();
+        vector<bool> picked(n, false);
+        vector<int> temp;
+        Permutation(nums,temp, picked, n);
         return res;
         
     }
