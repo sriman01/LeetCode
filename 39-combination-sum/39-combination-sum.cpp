@@ -1,33 +1,34 @@
 class Solution {
 public:
-    vector<vector<int>> res;
+    vector<vector<int>> v;
     
-    void Sum(int idx, vector<int> & temp, int target, vector<int> &cand, int n) {
-        if(idx == n) {
+  void subse(int i, vector<int> &ds, int target, vector<int> &cand, int n) {
+        
+        if(i == n) {
             if(target == 0)
-                res.push_back(temp);
+                v.push_back(ds);
             
             return;
         }
-        if(cand[idx] <= target){
-             temp.push_back(cand[idx]);
-             Sum(idx, temp, target-cand[idx], cand, n);
-             temp.pop_back();
+      
+ if(cand[i] <= target){
+             ds.push_back(cand[i]);
+             subse(i, ds, target-cand[i], cand, n);
+             ds.pop_back();
         }
        
         
-        Sum(idx + 1, temp, target, cand, n);
-        
+        subse(i + 1, ds, target, cand, n);
         
     }
     
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
         
-        int n = candidates.size();
-        vector<int> temp;
+        vector<int> ds;
+
+        subse(0, ds, target, candidates, candidates.size());
         
-        Sum(0, temp, target, candidates, n);
+        return v;
         
-        return res;
     }
 };
