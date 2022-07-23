@@ -1,8 +1,6 @@
-   
 class Solution {
 public:
-
-   int pascal(int row , int col , vector<vector<int>> &dp) {
+    int pascal(int row , int col , vector<vector<int>> &dp) {
         
         if(col == 0 ||  col == row)
             return 1;
@@ -32,7 +30,5 @@ public:
         }
              
         return vv;
-        
     }
 };
-    
