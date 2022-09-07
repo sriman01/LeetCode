@@ -14,10 +14,22 @@ public:
     void inorder(TreeNode* root, vector<int> &vec){
         if(root == NULL)
             return;
-        
-        inorder(root->left, vec);
-        vec.push_back(root->val);
-        inorder(root->right, vec);
+        stack<TreeNode*> st;
+
+        while(true){
+            if(root != NULL){
+                st.push(root);
+                root = root->left; 
+            }
+            else{
+                if(st.empty()) break;
+                root = st.top();
+                vec.push_back(root->val);
+                st.pop();
+                root = root->right;
+            }
+                
+        }
     }
     vector<int> inorderTraversal(TreeNode* root) {
         
