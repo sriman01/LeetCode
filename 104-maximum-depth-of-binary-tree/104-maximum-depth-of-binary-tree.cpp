@@ -11,13 +11,30 @@
  */
 class Solution {
 public:
+    int levelorder(TreeNode* root){
+        int cnt = 0;
+        if(root == NULL)
+            return 0;
+        queue<TreeNode* > q;
+        q.push(root);
+        
+        while(!q.empty()){
+            int n = q.size();
+            
+            while(n--){
+                TreeNode* temp = q.front();
+                q.pop();
+                
+                if(temp->left != NULL)
+                    q.push(temp->left);
+                if(temp->right != NULL)
+                    q.push(temp->right);
+            }
+            cnt++;
+        }
+        return cnt;
+    }
     int maxDepth(TreeNode* root) {
-        if(root == NULL) return 0;
-        
-        int x = maxDepth(root->left) + 1;
-        int y = maxDepth(root->right) + 1;
-        
-        return max(x,y);
-        
+     return levelorder(root);
     }
 };
