@@ -14,8 +14,8 @@ public:
     int Diameter(TreeNode* root, int &dia){
         if(root == NULL)
             return 0;
-        int lh = Diameter(root->left, dia);
-        int rh = Diameter(root->right, dia);
+        int lh = max(0,Diameter(root->left, dia));
+        int rh = max(0, Diameter(root->right, dia));
         
         dia = max(dia, lh+rh);
         
