@@ -27,23 +27,21 @@ int main() {
 }
 // } Driver Code Ends
 
-
 int * Rearrange(int *arr,int n){
     // Complete the function
     
-    bool check[n] = {0};
+    int i = 0;
     
-    for(int i = 0 ; i < n ; i ++){
-        if(arr[i] != -1)
-           check[arr[i]] = 1;
-    }
-    
-    
-    for(int i = 0; i < n ; i ++){
-        if(check[i])
-           arr[i] = i;
+    while(i < n){
+        if(arr[arr[i]] == arr[i] && arr[i] != -1)
+           i ++;
+        else if(arr[i] != -1 && arr[arr[i]] != arr[i]){
+            int temp = arr[arr[i]];
+            arr[arr[i]] = arr[i];
+            arr[i] = temp;
+        }
         else
-          arr[i] = -1;
+          i ++;
     }
     
     return arr;
