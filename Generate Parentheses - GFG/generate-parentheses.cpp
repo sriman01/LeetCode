@@ -23,7 +23,7 @@ class Solution
             return;
         }
         
-        if(open <= n){
+        if(open < n){
             solve(open + 1, close, n, temp + '(', res);
         }
         
